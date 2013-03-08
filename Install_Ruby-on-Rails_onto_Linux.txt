@@ -1,0 +1,66 @@
+Install Ruby-on-Rails onto Linux
+
+0. if under VBox, install VBoxGuestAdditionals
+
+1. if proxy, run:
+    export http_proxy=http://proxyuser:proxypass@proxy.com:8080
+    export https_proxy=http://proxyuser:proxypass@proxy.com:8080
+
+1a. put above commands to .bashrc;
+
+2. make sudo session to keep the proxy settings:
+    $ sudo su
+    # echo "Defaults env_keep = \"http_proxy https_proxy\"" > /etc/sudoers.d/env_keeps
+    # exit
+
+3. install useful utilities:
+    sudo apt-get install curl screen
+
+4. upgrade packages to the latest versions:
+    sudo apt-get update
+    sudo apt-get upgrade
+
+5. install Oracle JDK 7:
+    sudo add-apt-repository ppa:webupd8team/java
+    sudo apt-get update
+    sudo apt-get install oracle-java7-installer
+
+5a. try:
+    java -version
+
+5b. if no 'Oracle JDK', run:
+    sudo update-java-alternatives -s java-7-oracle
+
+6. install rvm (Ruby Volume Manager):
+    bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+
+6a. put RVM session setup command to profile:
+    echo "source ~/.rvm/scripts/rvm" > ~/.bashrc
+
+6b. run the command for this session:
+    source ~/.rvm/scripts/rvm
+
+7. reveal prerequisites for installing Ruby -- run:
+    rvm requirements
+
+7a. follow the instructions For Ruby/Ruby HEAD;
+
+8. install Ruby:
+    rvm install 1.9.3
+
+9. install RubyGems:
+    rvm rubygems current
+
+10. install Rails, Bundler and Rake:
+    gem install rails
+    gem install bundler
+    gem install rake    
+
+11. download RubyMine from http://www.jetbrains.com/ruby/download/
+
+12. install RubyMine:
+    cd ~/Downloads
+    tar xfz RubyMine-5.0.tar.gz
+    sudo mv RubyMine-5.0 /opt
+    cd /opt/RubyMine-5.0/bin
+    ./rubymine.sh
